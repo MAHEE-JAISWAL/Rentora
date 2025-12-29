@@ -2,10 +2,14 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Profile from "./pages/Profile";
-import Form from "./pages/Form";
+import Dresses from "./pages/Dresses";
+import Furniture from "./pages/Furniture";
+import Electronics from "./pages/Electronics";
+import Sports from "./pages/Sports";
+import Vehicle from "./pages/Vehicle";
+import Babym from "./pages/Babym";
+import Tool from "./pages/Tool";
+import Event from "./pages/Event";
 
 const App = () => {
   return (
@@ -19,10 +23,14 @@ const App = () => {
             </MainLayout>
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<Form />} />
+        <Route path="/dresses" element={<Dresses />} />
+        <Route path="/furniture" element={<Furniture />} />
+        <Route path="/electronics" element={<Electronics />} />
+        <Route path="/sports" element={<Sports />} />
+        <Route path="/vehicle" element={<Vehicle />} />
+        <Route path="/babym" element={<Babym />} />
+        <Route path="/tool" element={<Tool />} />
+        <Route path="/event" element={<Event />} />
       </Routes>
     </BrowserRouter>
   );
