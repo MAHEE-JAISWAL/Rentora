@@ -16,8 +16,12 @@ export class UserRegisterDto {
       throw new Error("Invalid email format.");
     }
 
-    if (this.password.length < 6) {
-      throw new Error("Password must be at least 6 characters long.");
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordRegex.test(this.password)) {
+      throw new Error(
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      );
     }
   }
 }
@@ -36,10 +40,6 @@ export class UserLoginDto {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.email)) {
       throw new Error("Invalid email format.");
-    }
-
-    if (this.password.length < 6) {
-      throw new Error("Password must be at least 6 characters long.");
     }
   }
 }

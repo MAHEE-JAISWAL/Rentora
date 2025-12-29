@@ -9,6 +9,7 @@ const Register = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,6 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     setLoading(true);
     try {
       const res = await fetch("http://localhost:5000/api/v1/auth/register", {
@@ -70,17 +72,23 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label className="block mb-1 font-medium">Password</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Toggle input type
             name="password"
             className="w-full px-3 py-2 border rounded"
             value={form.password}
             onChange={handleChange}
             required
-            minLength={6}
           />
+          <button
+            type="button"
+            className="absolute right-3 top-9 text-gray-600"
+            onClick={() => setShowPassword(!showPassword)} // Toggle visibility
+          >
+            {showPassword ? "🙈" : "👁️"} {/* Eye icon */}
+          </button>
         </div>
         <button
           type="submit"

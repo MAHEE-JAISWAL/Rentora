@@ -10,6 +10,10 @@ import Vehicle from "./pages/Vehicle";
 import Babym from "./pages/Babym";
 import Tool from "./pages/Tool";
 import Event from "./pages/Event";
+import Login from "./pages/Login"; // Import Login page
+import Register from "./pages/Register"; // Import Register page
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile"; 
 
 const App = () => {
   return (
@@ -23,6 +27,8 @@ const App = () => {
             </MainLayout>
           }
         />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<EditProfile />} /> {/* Add this route */}
         <Route path="/dresses" element={<Dresses />} />
         <Route path="/furniture" element={<Furniture />} />
         <Route path="/electronics" element={<Electronics />} />
@@ -31,6 +37,8 @@ const App = () => {
         <Route path="/babym" element={<Babym />} />
         <Route path="/tool" element={<Tool />} />
         <Route path="/event" element={<Event />} />
+        <Route path="/login" element={<Login />} /> {/* Add Login route */}
+        <Route path="/register" element={<Register />} /> {/* Add Register route */}
       </Routes>
     </BrowserRouter>
   );
