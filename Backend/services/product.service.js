@@ -31,15 +31,16 @@ export class ProductService {
   }
 
   async deleteProduct(id) {
-    if (!mongoose.isValidObjectId(id)) {
-      throw new Error("Invalid product ID");
+    if (!id) {
+      throw new Error("Product ID is required");
     }
-
-    const product = await Product.findByIdAndDelete(id);
-    if (!product) {
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    if (!deletedProduct) {
       throw new Error("Product not found");
     }
+    return deletedProduct;
   }
+  
 }
 
 export const productService = new ProductService();

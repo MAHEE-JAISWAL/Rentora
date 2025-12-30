@@ -36,7 +36,7 @@ export class ProductRoutes {
     );
 
     this.router.delete(
-      "/:id",
+      "/delete/:id",
       this.authMiddleware.isAuthenticated.bind(this.authMiddleware),
       this.productController.deleteProduct.bind(this.productController)
     );
