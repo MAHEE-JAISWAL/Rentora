@@ -45,7 +45,7 @@ const Dresses = () => {
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">Dresses</h1>
 
-      {/* Filters */}
+      
       <div className="flex gap-4 mb-6">
         <select className="px-4 py-2 border rounded-lg bg-white">Size</select>
         <select className="px-4 py-2 border rounded-lg bg-white">Color</select>

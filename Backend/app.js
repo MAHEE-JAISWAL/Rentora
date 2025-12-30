@@ -4,6 +4,7 @@ import cors from "cors";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import { AuthRoutes } from "./routes/auth.route.js";
 import { ProfileRoutes } from "./routes/profile.routes.js";
+import { ProductRoutes } from "./routes/product.routes.js";
 dotenv.config();
 
 const app = express();
@@ -18,10 +19,12 @@ app.use(
 
 const authRoutes = new AuthRoutes();
 const profileRoutes = new ProfileRoutes();
+const productRoutes = new ProductRoutes();
 
 app.use("/api/v1/auth", authRoutes.getRouter());
 app.use("/api/v1/profile", profileRoutes.getRouter());
 app.use("/uploads", express.static("uploads"));
+app.use("/api/v1/products", productRoutes.getRouter());
 
 app.use(errorHandler);
 

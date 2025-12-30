@@ -10,19 +10,6 @@ export class UserRegisterDto {
     if (!this.name || !this.email || !this.password) {
       throw new Error("Name, email, and password are required.");
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.email)) {
-      throw new Error("Invalid email format.");
-    }
-
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    if (!passwordRegex.test(this.password)) {
-      throw new Error(
-        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character."
-      );
-    }
   }
 }
 
