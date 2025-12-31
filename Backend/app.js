@@ -1,11 +1,9 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import { AuthRoutes } from "./routes/auth.route.js";
 import { ProfileRoutes } from "./routes/profile.routes.js";
 import { ProductRoutes } from "./routes/product.routes.js";
-dotenv.config();
 
 const app = express();
 app.use(express.json());

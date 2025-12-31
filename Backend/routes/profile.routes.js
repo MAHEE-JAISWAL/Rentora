@@ -4,19 +4,20 @@ import path from "path";
 import fs from "fs";
 import { AuthMiddleware } from "../middlewares/auth.middleware.js";
 import { ProfileController } from "../controllers/profile.controller.js";
+import { ProfileDto } from "../dtos/profile.dto.js";
+import { validateDto } from "../middlewares/validatedto.js";
 
 const uploadDir = "uploads";
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, `${req.user._id}_${Date.now()}${ext}`);
   },
 });
+
 const upload = multer({ storage });
 
 export class ProfileRoutes {
@@ -28,17 +29,21 @@ export class ProfileRoutes {
 
   initializeRoutes() {
     const authMiddleware = new AuthMiddleware();
+
     this.router.post(
       "/",
       authMiddleware.isAuthenticated.bind(authMiddleware),
-      upload.single("profilePic"),
+      upload.single("profilePic"),        // 1️⃣ multer first
+      validateDto(ProfileDto),             // 2️⃣ DTO validation (MISSING before)
       this.profileController.upsertProfile.bind(this.profileController)
     );
+
     this.router.get(
       "/",
       authMiddleware.isAuthenticated.bind(authMiddleware),
       this.profileController.getProfile.bind(this.profileController)
     );
+
     this.router.get(
       "/all",
       authMiddleware.isAuthenticated.bind(authMiddleware),
